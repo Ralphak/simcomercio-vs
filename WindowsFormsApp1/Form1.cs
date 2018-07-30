@@ -1,44 +1,59 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
+        static SqlConnection conexaoDB = new SqlConnection(ConfigurationManager.ConnectionStrings["registro_produtosConnectionString"].ConnectionString);
+        SqlCommand cmdDB = new SqlCommand("select * from Produtos", conexaoDB);
+        SqlDataReader reader;
+
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
-            ListViewItem p1 = new ListViewItem("Carne Bovina", 0);
-            p1.SubItems.Add("R$100,00");
-            p1.SubItems.Add("Carne");
+            conexaoDB.Open();
+            reader = cmdDB.ExecuteReader();
+            while (reader.Read())
+            {
+                ListViewItem item = new ListViewItem(reader.GetInt32(0).ToString());
+                item.SubItems.Add(reader.GetString(1));
+                item.SubItems.Add(reader.GetString(2));
+                item.SubItems.Add(reader.GetInt32(4).ToString());
+                item.SubItems.Add("R$" + reader.GetSqlMoney(5));
+                ListaProdutos.Items.Add(item);
+            }
+            conexaoDB.Close();
+        }
 
-            ListViewItem p2 = new ListViewItem("Carne Suina", 0);
-            p2.SubItems.Add("R$500,00");
-            p2.SubItems.Add("Carne");
+        private void ListaProdutos_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            cmdDB.CommandText = "select * from Produtos where Id=" + ListaProdutos.SelectedItems[0].Text;
+            conexaoDB.Open();
+            reader = cmdDB.ExecuteReader();
+            reader.Read();
+            MessageBox.Show("Detalhes do Produto:\n" +
+                "\n" + reader.GetName(1) + ": " + reader.GetString(1) +
+                "\n" + reader.GetName(2) + ": " + reader.GetString(2) +
+                "\n" + reader.GetName(3) + ": " + reader.GetString(3) +
+                "\n" + reader.GetName(4) + ": " + reader.GetInt32(4) +
+                "\n" + reader.GetName(5) + ": R$" + reader.GetSqlMoney(5) +
+                "\n" + reader.GetName(6) + ": " + reader.GetInt16(6) +
+                "\nDimensões: " + reader.GetByte(7) + "m X " + reader.GetByte(8) + "m X " + reader.GetByte(9) +
+                "m\n" + reader.GetName(10) + ": " + reader.GetDecimal(10) +
+                "%\nClassificação Fiscal ou NCM: " + reader.GetInt32(11));
+            conexaoDB.Close();
+        }
 
-            ListViewItem p3 = new ListViewItem("Peixe", 0);
-            p3.SubItems.Add("R$80,00");
-            p3.SubItems.Add("Carne");
-
-            ListaProdutos.Items.Add(p1);
-            ListaProdutos.Items.Add(p2);
-            ListaProdutos.Items.Add(p3);
+        private void AddProduto_Click(object sender, EventArgs e)
+        {
+            new Form2().ShowDialog();
         }
     }
 }
