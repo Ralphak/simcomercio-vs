@@ -43,9 +43,10 @@ namespace WindowsFormsApp1
             // pictureBox1
             // 
             this.pictureBox1.Image = global::WindowsFormsApp1.Properties.Resources.mercosul;
-            this.pictureBox1.Location = new System.Drawing.Point(10, 11);
+            this.pictureBox1.Location = new System.Drawing.Point(13, 14);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(315, 428);
+            this.pictureBox1.Size = new System.Drawing.Size(420, 527);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -58,9 +59,10 @@ namespace WindowsFormsApp1
             this.Qtd,
             this.Preço});
             this.ListaProdutos.FullRowSelect = true;
-            this.ListaProdutos.Location = new System.Drawing.Point(331, 11);
+            this.ListaProdutos.Location = new System.Drawing.Point(441, 14);
+            this.ListaProdutos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ListaProdutos.Name = "ListaProdutos";
-            this.ListaProdutos.Size = new System.Drawing.Size(300, 430);
+            this.ListaProdutos.Size = new System.Drawing.Size(390, 528);
             this.ListaProdutos.TabIndex = 1;
             this.ListaProdutos.UseCompatibleStateImageBehavior = false;
             this.ListaProdutos.View = System.Windows.Forms.View.Details;
@@ -74,11 +76,11 @@ namespace WindowsFormsApp1
             // Modal
             // 
             this.Modal.Text = "Modal";
-            this.Modal.Width = 90;
+            this.Modal.Width = 80;
             // 
             // Qtd
             // 
-            this.Qtd.Text = "Qtd";
+            this.Qtd.Text = "Qtd.";
             this.Qtd.Width = 50;
             // 
             // Preço
@@ -88,10 +90,10 @@ namespace WindowsFormsApp1
             // 
             // AddProduto
             // 
-            this.AddProduto.Location = new System.Drawing.Point(636, 11);
-            this.AddProduto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AddProduto.Location = new System.Drawing.Point(848, 14);
+            this.AddProduto.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddProduto.Name = "AddProduto";
-            this.AddProduto.Size = new System.Drawing.Size(75, 41);
+            this.AddProduto.Size = new System.Drawing.Size(100, 50);
             this.AddProduto.TabIndex = 9;
             this.AddProduto.Text = "Adicionar Produto";
             this.AddProduto.UseVisualStyleBackColor = true;
@@ -99,13 +101,14 @@ namespace WindowsFormsApp1
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(721, 449);
+            this.ClientSize = new System.Drawing.Size(961, 553);
             this.Controls.Add(this.AddProduto);
             this.Controls.Add(this.ListaProdutos);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -24,8 +24,8 @@ namespace WindowsFormsApp1
             {
                 ListViewItem item = new ListViewItem(reader.GetInt32(0).ToString());
                 item.SubItems.Add(reader.GetString(1));
-                item.SubItems.Add(reader.GetDouble(28).ToString());
                 item.SubItems.Add(reader.GetDouble(30).ToString());
+                item.SubItems.Add("R$" + reader.GetDouble(28).ToString());
                 
                 ListaProdutos.Items.Add(item);
             }
@@ -41,7 +41,7 @@ namespace WindowsFormsApp1
             string mensagem = "Detalhes do Produto:\n" +
                 "\n" + reader.GetName(0) + ": " + reader.GetInt32(0).ToString() +
                 "\n" + reader.GetName(1) + ": " + reader.GetString(1) ;
-            for (int i = 2; i <= 34; i++)
+            for (int i = 2; i < reader.FieldCount; i++)
             {
                 mensagem += "\n" + reader.GetName(i) + ": " + reader.GetDouble(i).ToString();
             }
